@@ -42,12 +42,13 @@
         </div>
 
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Add</button>
+          <button type="submit" class="btn btn-primary">ADD</button>
         </div>
       </form>
     </div>
   </div>
 </template>
+
 <script>
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
@@ -66,7 +67,7 @@ export default {
       let no_tlp = friend.no_tlp;
       let alamat = friend.alamat;
       axios
-        .post("http://127.0.0.1:8000/api/friends", {
+        .post("http://127.0.0.1:8000/api/friends/", {
           nama: nama,
           no_tlp: no_tlp,
           alamat: alamat,

@@ -6,6 +6,9 @@
     <router-link class="btn btn-primary" to="/createfriends"
       >Add friends</router-link
     >
+
+    <Cardfriends :friends="friends"/>
+
     <table class="table">
       <thead>
         <tr>
@@ -21,10 +24,10 @@
           <td>{{ friend.no_tlp}}</td>
           <td>{{ friend.alamat}}</td>
           <td>
-            <router-link class="btn btn-success" to="/createfriends"
+            <router-link class="btn btn-success" :to="{name: 'Editfriends', params:{id:friend.id}} "
               >Edit</router-link
             >
-            <button class="btn btn-danger">delete</button>
+            <button @click.prevent="friendDelete(friend.id)"  class="btn btn-danger">delete</button>
           </td>
         </tr>
       </tbody>
@@ -36,11 +39,13 @@
 import axios from 'axios'
 // @ is an alias to /src
 import Slider from "@/components/Slider.vue";
+import Cardfriends from "@/components/Cardfriends.vue";
 import { onMounted, ref } from 'vue';
 export default {
   name: "Home",
   components: {
     Slider,
+    Cardfriends,
   },
   setup(){
     let friends = ref([])
@@ -53,8 +58,10 @@ export default {
         console.log(error)
       })
     })
+ 
     return {
-      friends
+      friends,
+      friendDelete
     }
   }
 };
